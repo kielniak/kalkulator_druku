@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator kosztu wydruku 3D</title>
+  <meta name="description" content="Oblicz koszt wydruku 3D: filament, prąd i zużycie drukarki.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Kalkulator kosztu <span>wydruku 3D</span></h1>
+    <p class="intro">Wpisz dane wydruku, a kalkulator policzy koszt filamentu, prądu i zużycia drukarki.
+       Wartości domyślne są przybliżone, zmień je na swoje.</p>
+
+    <div class="layout">
+      <form id="form" class="panel">
+        <h2>Wydruk</h2>
+
+        <label>Waga wydruku (g)
+          <input type="number" id="weight" value="50" min="0" step="any">
+        </label>
+
+        <div class="row">
+          <label>Czas: godziny
+            <input type="number" id="hours" value="2" min="0" step="1">
+          </label>
+          <label>minuty
+            <input type="number" id="minutes" value="30" min="0" max="59" step="1">
+          </label>
+        </div>
+
+        <label>Rodzaj filamentu
+          <select id="filament">
+            <option value="80">PLA</option>
+            <option value="90">PETG</option>
+            <option value="90">ABS</option>
+            <option value="110">ASA</option>
+            <option value="130">TPU</option>
+          </select>
+        </label>
+
+        <label>Cena filamentu (zł/kg)
+          <input type="number" id="filamentPrice" value="80" min="0" step="any">
+        </label>
+
+        <h2>Drukarka i prąd</h2>
+
+        <label>Drukarka
+          <select id="printer">
+            <option value="100|1800|3000">Bambu Lab A1 (przybliżone dane)</option>
+            <option value="150|2500|3000">Inna drukarka</option>
+          </select>
+        </label>
+
+        <label>Średnia moc drukarki (W)
+          <input type="number" id="power" value="100" min="0" step="any">
+        </label>
+
+        <label>Cena prądu (zł/kWh)
+          <input type="number" id="kwh" value="1.2" min="0" step="any">
+        </label>
+
+        <div class="row">
+          <label>Cena drukarki (zł)
+            <input type="number" id="printerPrice" value="1800" min="0" step="any">
+          </label>
+          <label>Żywotność (godz.)
+            <input type="number" id="life" value="3000" min="1" step="any">
+          </label>
+        </div>
+
+        <h2>Dodatki</h2>
+
+        <div class="row">
+          <label>Nieudane wydruki (%)
+            <input type="number" id="failure" value="10" min="0" step="any">
+          </label>
+          <label>Marża (%)
+            <input type="number" id="margin" value="0" min="0" step="any">
+          </label>
+        </div>
+      </form>
+
+      <section class="panel result" aria-live="polite">
+        <h2>Wynik</h2>
+        <ul>
+          <li><span>Filament</span><strong id="rFilament">0,00 zł</strong></li>
+          <li><span>Prąd</span><strong id="rPower">0,00 zł</strong></li>
+          <li><span>Zużycie drukarki</span><strong id="rWear">0,00 zł</strong></li>
+          <li><span>Nieudane wydruki</span><strong id="rFailure">0,00 zł</strong></li>
+          <li><span>Marża</span><strong id="rMargin">0,00 zł</strong></li>
+        </ul>
+        <div class="total">
+          <span>Cena wydruku</span>
+          <strong id="rTotal">0,00 zł</strong>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
